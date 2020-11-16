@@ -1,6 +1,5 @@
 window.onload = function(event){
     let button = document.querySelector("#lookup");
-    console.log(button);
 
     button.addEventListener('click', (event) => {
         event.preventDefault();
@@ -17,4 +16,4 @@ window.onload = function(event){
             });
     });
 
- };
+};

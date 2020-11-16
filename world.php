@@ -1,5 +1,34 @@
 <?php
 
+  function build_table($results){
+    $intial = <<<STR
+    <table>
+    <thead>
+    <tr>
+      <th>Country</th>
+      <th>Continent</th>
+      <th>Indepedence Year</th>
+      <th>Head of State</th>
+    </tr>
+    </thead>
+    <tbody>
+    STR;
+    $end = "</tbody></table>";
+    foreach ($results as $row){
+      $current = <<<WRD
+      <tr>
+        <td>{$row['name']}</td>
+        <td>{$row['continent']}</td>
+        <td>{$row['independence_year']}</td>
+        <td>{$row['head_of_state']}</td>
+      </tr>
+      WRD;
+      $intial .= $current;
+    }
+    $intial .= $end;
+    return $intial;
+  }
+
   $host = 'localhost';
   $username = 'lab5_user';
   $password = 'password123';
@@ -11,29 +40,21 @@
       if($country == ""){
           $stmt = $conn->query("SELECT * FROM countries");
           $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          $intial = "<ul>";
-          $end = "</ul>";
-          foreach ($results as $row){
-            $intial .= "<li>".$row['name'] . ' is ruled by ' . $row['head_of_state']."</li>";
-          }
-          $intial .= $end;
-          echo $intial;
+          echo build_table($results);
       }else{
           $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
           $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
           if($results == null){
             echo strtoupper("No search results found");
           }else{
-            $intial = "<ul>";
-            $end = "</ul>";
-            foreach ($results as $row){
-              $intial .= "<li>".$row['name'] . ' is ruled by ' . $row['head_of_state']."</li>";
-            }
-            $intial .= $end;
-            echo $intial;
+            echo build_table($results);
           }
       }
   }
+
+// QUERY -> SELECT c.id, c.name as city, c.country_code, cs.name as
+// country, c.population FROM cities c join countries cs on
+// c.country_code = cs.code WHERE c.population > 6300000;
 
 ?>
 
