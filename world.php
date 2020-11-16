@@ -7,7 +7,7 @@ $dbname = 'world';
 $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
 $stmt = $conn->query("SELECT * FROM countries");
 
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC); // Completed Exercise One
 
 ?>
 <ul>
