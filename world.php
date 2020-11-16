@@ -21,13 +21,17 @@
       }else{
           $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
           $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          $intial = "<ul>";
-          $end = "</ul>";
-          foreach ($results as $row){
-            $intial .= "<li>".$row['name'] . ' is ruled by ' . $row['head_of_state']."</li>";
+          if($results == null){
+            echo strtoupper("No search results found");
+          }else{
+            $intial = "<ul>";
+            $end = "</ul>";
+            foreach ($results as $row){
+              $intial .= "<li>".$row['name'] . ' is ruled by ' . $row['head_of_state']."</li>";
+            }
+            $intial .= $end;
+            echo $intial;
           }
-          $intial .= $end;
-          echo $intial;
       }
   }
 
