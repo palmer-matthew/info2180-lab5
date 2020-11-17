@@ -10,7 +10,13 @@ window.onload = function(event){
             .then(response => response.text())
             .then(data => {
                 let result_div = document.querySelector("#result");
-                result_div.innerHTML = data.trim();
+                if(data.trim() == "NO SEARCH RESULTS FOUND"){
+                    result_div.classList.add("noresults");
+                    result_div.innerHTML = data.trim();
+                }else{
+                    result_div.classList.remove("noresults");
+                    result_div.innerHTML = data.trim();
+                }
             })
             .catch(error => {
                 console.log(error);
