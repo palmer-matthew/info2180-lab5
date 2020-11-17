@@ -81,7 +81,7 @@ button[id=lookup]{
     margin-top: 3%;
     display: flex;
     justify-content: center;
-    overflow-x: auto;
+    width: 60%;
 }
 
 table{
