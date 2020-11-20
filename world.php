@@ -100,13 +100,14 @@
         
     }
 
+  }catch(error $e){
+    echo json_encode(array(
+        'error' => 'Help'
+    ));
   }catch(exception $e){
     echo json_encode(array(
-        'error' => array(
-            'code' => $e->getCode(),
-            'message' => $e->getMessage()
-        )
-    ));
+      'error' => 'Help'
+  ));
   }
 
 ?>
